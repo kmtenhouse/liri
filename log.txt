@@ -1,0 +1,51 @@
+[10/17/2018 1:34 am] do-what-it-says random.txt
+[10/17/2018 1:34 am] spotify-this-song "I Want it That Way"
+[10/17/2018 1:34 am] 
+Song Name: I Want It That Way
+By: Manuel Costa
+From the album: I Want It That Way
+Listen to a sample: https://open.spotify.com/track/4Sp4RxkWukxqJykl0ySNQi
+==============
+[10/17/2018 1:37 am] spotify-this-song The Sign by Ace of Base
+[10/17/2018 1:37 am] 
+Song Name: The Sign (As Made Famous By Ace of Base)
+By: The Karaoke Crew
+From the album: Drew's Famous # 1 Karaoke Hits: 90's Party Hits Vol. 2
+Listen to a sample: https://open.spotify.com/track/43iNM4P9RH071kHJXwcU7M
+==============
+[10/17/2018 1:37 am] spotify-this-song Hit Me Baby One More Time
+[10/17/2018 1:37 am] 
+Song Name: Hit Me Baby One More Time
+By: Judy
+From the album: Summer Hits! '99
+Listen to a sample: https://open.spotify.com/track/4RCHgSOZ6KJ3GHJOVE7LWe
+==============
+[10/17/2018 1:37 am] spotify-this-song laksdjflkasdjfk
+[10/17/2018 1:37 am] Error: no song found by the name laksdjflkasdjfk
+[10/17/2018 1:39 am] movie-this Mr. Nobody
+[10/17/2018 1:39 am] 
+Movie Title: Mr. Nobody
+Year Released: 2009
+IMDB Rating: 7.9
+Rotten Tomatoes Score: 
+Production Occurred In: Belgium, Germany, Canada, France, USA, UK
+Languages: English, Mohawk
+Synopsis: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+Starring: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+==============
+[10/17/2018 1:39 am] movie-this zzzzz
+[10/17/2018 1:39 am] Error: no movie found by the name zzzzz
+[10/17/2018 1:41 am] Error: no band name was provided.
+[10/17/2018 1:41 am] concert-this 
+[10/17/2018 1:41 am] concert-this Third Eye Blin
+[10/17/2018 1:41 am] Error: no band name was provided.
+[10/17/2018 1:41 am] concert-this 
+[10/17/2018 1:41 am] concert-this Green Day
+[10/17/2018 1:41 am] Error: no concerts are currently found for the band Green Day
+[10/17/2018 1:42 am] concert-this Third Eye Blind
+[10/17/2018 1:42 am] 
+Live at Motorcity Casino Hotel
+Full Lineup: Third Eye Blind
+Appearing on 11/04/2018
+In Detroit MI, United States
+==============
