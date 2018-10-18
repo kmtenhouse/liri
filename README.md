@@ -47,6 +47,8 @@ Search for appearances by your favorite band! Liri will attempt to find upcoming
 
 *Default:* If no band name is provided, liri will search for "Feed Me". 
 
+![View it in action](https://drive.google.com/file/d/1Tqqu3S-6xRMZ0eso7WJ8pV0sgrhXZVN-/view)
+
 ## spotify-this-song _song name_
 Find information about a song you heard on the radio! 
 
@@ -66,7 +68,7 @@ Liri will attempt to read instructions from a plain text (UTF8 encoded) file tha
 
 ## help
 If you forget what commands are available, simply type 'help' with no arguments for a reminder!
-![Screenshot of Liri Help](https://github.com/kmtenhouse/liri/raw/master/assets/images/liri-help.jpg)
+![Screenshot of Liri Help](https://kmtenhouse.github.io/liri-node-app/liri-help.jpg)
 
 # Future Enhancements
 * Read multiple liri commands from the same text file
