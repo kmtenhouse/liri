@@ -219,7 +219,6 @@ function lookUpMovie(arguments) {
              //first, make sure that this movie HAS in-depth ratings - not all do!
                 if(currentMovie.Ratings.length>0) {
                     for(let i=0; i<currentMovie.Ratings.length; i++) { 
-                            console.log("Rating: " + currentMovie.Ratings[i].Source + " " + currentMovie.Ratings[i].Value);
                             if(currentMovie.Ratings[i].Source==="Rotten Tomatoes") {
                                 myMovie.rottentomatoes = currentMovie.Ratings[i].Value;
                                 break;

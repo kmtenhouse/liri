@@ -16,3 +16,29 @@ In Costa Mesa CA, United States
 [10/18/2018 12:53 pm] Error: no concerts are currently found for the band Beyonce
 [10/18/2018 12:53 pm] concert-this Rihanna
 [10/18/2018 12:53 pm] Error: no concerts are currently found for the band Rihanna
+[10/18/2018 2:33 pm] spotify-this-song The Sign by Ace of Base
+[10/18/2018 2:34 pm] 
+Song Name: The Sign (Originally Performed by Ace of Base) [Karaoke Version]
+By: The Karaoke Channel
+From the album: The Karaoke Channel - Sing the Sign Like Ace of Base
+Listen to a sample: https://open.spotify.com/track/1XahejvCmeUcdmQkbp5ZHG
+==============
+[10/18/2018 2:38 pm] concert-this Feed Me
+[10/18/2018 2:38 pm] 
+Live at OC Fair & Event Center
+Full Lineup: Feed Me, Modest Mouse, Cold War Kids, Patton Oswalt, Rusko, Echoes, Rhys Darby, Kristen Schaal, Maria Bamford, Natasha Leggero, Emo Philips, Empire of the Sun, PHANTOGRAM, Hari Kondabolu, Marcella Arguello, Ducky, Bro Safari, Baron Vaughn, Echos, Ron Funches, What So Not, April Richardson, Dion Timmer, Allie X, Nails, Party Nails, LUCA LUSH, NVDES, Bonnie X Clyde, Elise Trouw, Nitti Gritti, CHIMES
+Appearing on 11/03/2018
+In Costa Mesa CA, United States
+==============
+[10/18/2018 2:39 pm] movie-this Mr. Nobody
+[10/18/2018 2:40 pm] movie-this Mr. Nobody
+[10/18/2018 2:40 pm] 
+Movie Title: Mr. Nobody
+Year Released: 2009
+IMDB Rating: 7.9
+Rotten Tomatoes Score: 67%
+Production Occurred In: Belgium, Germany, Canada, France, USA, UK
+Languages: English, Mohawk
+Synopsis: A boy stands on a station platform as a train is about to leave. Should he go with his mother or stay with his father? Infinite possibilities arise from this decision. As long as he doesn't choose, anything is possible.
+Starring: Jared Leto, Sarah Polley, Diane Kruger, Linh Dan Pham
+==============

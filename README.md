@@ -41,34 +41,73 @@ Liri supports the following commands:
 * do-what-it-says _filename_
 * help 
 
+Once you have completed a search in liri, your results will also be timestamped and saved within the logfile 'log.txt' so you can review them later.
+
 # Commands
 ## concert-this _band name_ 
-Search for appearances by your favorite band! Liri will attempt to find upcoming concerts where they will appear.
+Search for appearances by your favorite band! Liri will attempt to find upcoming concerts where they will appear. Liri
 
 *Default:* If no band name is provided, liri will search for "Feed Me". 
 
-![View it in action](https://drive.google.com/file/d/1Tqqu3S-6xRMZ0eso7WJ8pV0sgrhXZVN-/view)
+Liri will display a list of results. Use the up and down arrow keys to view all results, then 'Enter' to select. Select 'Quit' when you'd like to end.
+
+```
+Live at: (Name of the venue where the band will appear)
+Full lineup: (All the artists that will be appearing alongside your band)
+Appearing on: MM/DD/YYYY 
+In: (City/state/country of performance)
+```
+
+[View it in action](https://drive.google.com/file/d/1Tqqu3S-6xRMZ0eso7WJ8pV0sgrhXZVN-/view)
 
 ## spotify-this-song _song name_
 Find information about a song you heard on the radio! 
 
 *Default:* If no song name is provided, liri will search for "The Sign".
 
+Liri will display a list of results. Use the up and down arrow keys to view all results, then 'Enter' to select. Select 'Quit' when you'd like to end.
+
+```
+Song Name: (Full title of the selected song)
+By: (The artist who recorded this version)
+From the album: (The album where this song can be found)
+Listen to a sample: (A Spotify link to the song so that you can hear it if you have a Spotify account!)
+```
+
+[View it in action](https://drive.google.com/file/d/1Tr2tr1CCoDQMl9K8YzqS0ZUeXm9rz1pe/view)
+
 ## movie-this _movie title_
 Look up a movie (by title) on IMDB!
 
 *Default:* If no movie title is provided, liri will search for "Mr. Nobody".
+
+Liri will display a list of results. Use the up and down arrow keys to view all results, then 'Enter' to select. Select 'Quit' when you'd like to end.
+
+```
+Movie Title: (Full title of the movie)
+Year Released: (Year the movie came out)
+IMDB Rating: (Rating from IMDB if available)
+Rotten Tomatoes Score: (Tomatometer rating, if available)
+Production Occurred In: (Countries where filming occurred)
+Languages: (Languages the movie is available in)
+Synopsis: (Plot summary)
+Starring: (Key actors)
+```
+
+[View it in action](https://drive.google.com/file/d/1jzFHNFzzJe-Cilk2lLa6XI8OBaJRZAna/view)
 
 ## do-what-it-says _filename_
 Liri will attempt to read instructions from a plain text (UTF8 encoded) file that includes a comma separated liri command and then string of arguments.
 
 *Default:* If no filename is provided, liri will search for "random.txt" in the liri directory.
 
+[View it in action](https://drive.google.com/file/d/120YfmBkLmmXXGE0bmNJvYGZE5BTDfkEg/view)
+
 **NOTE:** at this time, liri can only parse one command from a file.
 
 ## help
 If you forget what commands are available, simply type 'help' with no arguments for a reminder!
-![Screenshot of Liri Help](https://kmtenhouse.github.io/liri-node-app/liri-help.jpg)
+[View it in action](https://drive.google.com/file/d/1Jw3F0zmWIqJo9Owb01g6n_cDMcfwfeUy/view)
 
 # Future Enhancements
 * Read multiple liri commands from the same text file
