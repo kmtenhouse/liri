@@ -1,5 +1,13 @@
 //CODE THAT RUNS WHEN WE FIRST RUN THIS PROGRAM:
+
+//GLOBAL VARIABLES
+var request = require('request');
+var clear = require('clear');
+var moment = require('moment');
+var fs = require('fs');
+
 //First, check what the user has input as a command...
+
 var userCommand = process.argv[2]; 
 
 //next, prep an array with any arguments the user may have sent in
@@ -16,6 +24,8 @@ liri(userCommand, userArguments);
 //LIRI(command, arguments[])
 //the liri function accepts a command (string) and an array of arguments
 function liri(command, arguments) {
+    //start by clearing the console so that liri will have room to operate
+    clear();
     switch(command) {
         case "concert-this": lookUpBands(arguments); 
                             break;
@@ -43,7 +53,6 @@ function liri(command, arguments) {
 }
 
 function lookUpBands(arguments) {
-
     //first, join together the band name...
     var bandName = arguments.join(" ");
 
@@ -59,17 +68,24 @@ function lookUpBands(arguments) {
 
     console.log("Searching for appearances by " + bandName +"...");
     //otherwise, we attempt to make the request!
-    var request = require('request');
     request("https://rest.bandsintown.com/artists/" + bandName + "/events?app_id=codingbootcamp", function (error, response, data) {
         if(error) {
             return console.log('Sorry, something went wrong:', error); // Print the error if one occurred
         }
-
-        //NOTE: there appears to be a problem in the object that bandsintown sends back when you input garbage data (a band that doesn't exist)
-        var eventList = JSON.parse(data); //note: we expect to receive back an array of objects
+        //NOTE: there appears to be a problem with the object we receive from bandsintown when we input garbage data (a band that doesn't exist)
+        //The response is '{warn=Not Found}' which JSON.parse chokes on
+        //As a result I've added a try/catch to handle this possibility
+        try {
+            var eventList = JSON.parse(data); //note: we expect to receive back an array of objects
+        }
+        catch(err) {
+            console.log("Sorry, I can't find any bands named " + bandName);
+            return;
+        }
+        //assuming that we found the band itself, we now determine if there are any concert dates
+        //if the band is not touring, the array of event objects will be empty
         if(eventList.length>0) { 
-            //if we did receive results for this band, go through each of the events and grab exactly what we want
-            var moment = require('moment');   
+            //go through each of the events and grab exactly what we want  
             var allEvents = [];
 
             eventList.forEach(currentEvent => {
@@ -175,16 +191,15 @@ function lookUpSong(arguments) {
 }
 
 function lookUpMovie(arguments) {
+
     //first, determine if we have a movie or not...if not, our default will be 'Mr. Nobody'
     var movieName;
     (arguments.length>0 ? movieName = arguments.join(" ") : movieName = "Mr. Nobody");
     
     //log our search info to the logfile
-    var moment = require('moment');
     logFile("movie-this " + movieName);
 
     //begin a request
-    var request = require('request');
     request('http://www.omdbapi.com/?apikey=trilogy&t='+movieName, function (error, response, result) {
             if(error) {
                 return console.log("Sorry, something went wrong: " + error);
@@ -195,27 +210,30 @@ function lookUpMovie(arguments) {
             if(currentMovie.Response==="True") { //if the search response was true, there is a movie for us to look at!
                 console.log("Searching for the movie " + movieName + "...");
                
-                var myMovie = [{
+                var myMovie = {
                     title: currentMovie.Title,
                     year: currentMovie.Year,
                     imdb: currentMovie.imdbRating,
-                    rottentomatoes: "",
+                    rottentomatoes: "N/A",
                     producedIn: currentMovie.Country,
                     language: currentMovie.Language,
                     plot: currentMovie.Plot,
                     actors: currentMovie.Actors
-                }];
+                };
 
              //NOTE: we have to do a little extra work to find rotten tomatoes rating
-                for(let i=0; currentMovie.Ratings; i++) {
-                    if(currentMovie.Ratings[i].Source==="Rotten Tomatoes") {
-                        myMovie.rottentomatoes = currentMovie.Ratings[i].Value;
-                        break;
-                    }
-                }
+             //first, make sure that this movie HAS in-depth ratings - not all do!
+                if(currentMovie.Ratings.length>0) {
+                    for(let i=0; i<currentMovie.Ratings.length; i++) { 
+                            console.log("Rating: " + currentMovie.Ratings[i].Source + " " + currentMovie.Ratings[i].Value);
+                            if(currentMovie.Ratings[i].Source==="Rotten Tomatoes") {
+                                myMovie.rottentomatoes = currentMovie.Ratings[i].Value;
+                                break;
+                            }    
+                        } 
+                }      
                 //finally our result object is complete!
-               
-                //Finally, show all results to the user...
+                //We will now show all results to the user...
                 var customText = [
                     {property: "title", description: "Movie Title:"}, 
                     {property: "year", description: "Year Released:"}, 
@@ -226,7 +244,7 @@ function lookUpMovie(arguments) {
                     {property: "plot", description: "Synopsis:"},
                     {property: "actors", description: "Starring:"}
                 ];
-                 displayResults(myMovie, {summarizeBy: ["title", "year"], separator: "(", descriptors: customText});
+                 displayResults([myMovie], {summarizeBy: ["title", "year"], separator: "(", descriptors: customText});
             }
             else { //otherwise, the response was false - the movie database didn't have anything by that name
                 console.log("Sorry, I couldn't find any movies by that name.");
@@ -238,13 +256,14 @@ function lookUpMovie(arguments) {
 //attempts to parse liri instructions that are found within a file - assumes they are comma separated
 //in the form <command>,<arguments>
 function lookUpInstructions(arguments) {
+
     //first, determine if the user tried to provide a filename in their arguments
     //if not, we will default to 'random.txt'
     var filename; 
     (arguments.length>0 ? filename = arguments.join("") : filename = "random.txt");
-    console.log("Reading liri commands from " + filename + "...");
 
-    var fs = require('fs');
+    console.log("Reading liri commands from " + filename + "...");
+    
     //attempt to open the file and read in its contents
     fs.readFile(filename, 'utf8', function(err, data) {
         if(err) {
@@ -276,13 +295,6 @@ function isLiriCommand(word) {
 //logs commands/arguments/searches to a log file
 //assumes that results will be objects that need to be stringified
 function logFile(whatToLog) {
-    var fs = require('fs');
-    var moment = require('moment');
-    //stringify any objects
-    if(typeof(whatToLog)==="object") {
-        whatToLog = JSON.stringify(whatToLog, null, 2);
-    }
-
     fs.appendFile('log.txt',"[" + moment().format("MM/DD/YYYY h:mm a") +"] " + whatToLog+"\n", 'utf8', function(err) {
         if(err) {
             return console.log("Sorry, there was an error writing to the log file: " + err);
@@ -292,11 +304,11 @@ function logFile(whatToLog) {
 }
 
 //this function allows the user to look through the results of their previous search in a user-friendly way 
-//assumes that 'resultsArr' is an array of objects, and 'messages' is a message object that tells us what to display
+//assumes that 'resultsArr' is an array of objects, and 'messages' is a message object that tells us what verbose descriptions to display when showing each property on that object
 function displayResults(resultsArr, messages) {
     //first, create the list of summary string(s) that we'll be displaying to the user in a custom menu
     var allSummarizedChoices = [];
-    //for each object in the array of results that we provided...
+    //for each object in the array that we provided...
     resultsArr.forEach(function(currentObj, index) {
         var summarizedString = "";
         for(let i=0; i<messages.summarizeBy.length; i++) {
@@ -315,11 +327,11 @@ function displayResults(resultsArr, messages) {
                 summarizedString+=")"; //if we are doing parens, add a closing parens
             }
         }
-        //now add an OBJECT to our array of summarized choices -- the name will be our summarized string, and the value we actually grab is the index
+        //now add an OBJECT to our array of summarized choices -- the name property will be our summarized string, and the value we actually grab is the index of the original item in the results array
         allSummarizedChoices.push({name: summarizedString, value: index}); 
     });
     
-    //finally, add a 'choice' that is our signal to quit: a choice with a value of -1 
+    //finally, add a default that is our signal to quit: a choice with an index valut outside of the array
     allSummarizedChoices.push({name: 'Quit', value: -1});
 
     //now, fire up inquirer with our customized list of choices -- using recursion to manage this
@@ -342,6 +354,8 @@ function displayResults(resultsArr, messages) {
             //grab the specific object we want to display
             var selectedItem = resultsArr[index]; 
             //now, go through our messages and display the info using our custom text
+            //start by clearing the screen
+            clear();
             var logItems = "";
             console.group();
             messages.descriptors.forEach(function(desc) {
@@ -354,7 +368,7 @@ function displayResults(resultsArr, messages) {
             }
              });
             console.groupEnd();
-
+            console.log("\n");
             //now recurse to display our menu again!
             //NOTE: we will ALSO stop recursing if there was only one result -- no reason to go back to the menu
             logFile("\n" + logItems+"==============");
