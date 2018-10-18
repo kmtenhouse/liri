@@ -53,18 +53,12 @@ function liri(command, arguments) {
 }
 
 function lookUpBands(arguments) {
-    //first, join together the band name...
-    var bandName = arguments.join(" ");
+    //first, join together the band name
+    //if no bandname was provided, we'll use our default (Feed Me)
+    var bandName = (arguments.length ? arguments.join(" ") : "Feed Me");
 
     //log the command itself to our logfile
     logFile("concert-this " + bandName);
-
-    //NOTE: we don't have a default band, so we'll just error and exit if no band name was provided
-    if(bandName==="") {
-        console.log("Please provide a bandname in order to search for concerts!");
-        logFile("Error: no band name was provided.");
-        return;
-    }
 
     console.log("Searching for appearances by " + bandName +"...");
     //otherwise, we attempt to make the request!
